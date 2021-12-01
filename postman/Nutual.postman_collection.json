@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "3ad24853-3972-4446-9e21-bd22a7efc7c5",
+		"name": "Nutual",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"john2@test.com\",\n    \"name\": \"john wane\",\n    \"password\": \"123456OwW!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"john2@test.com\",\n    \"password\": \"123456OwW!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get all users [ADMIN]",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Get user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "john2@test.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch user",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"john\",\n    \"password\": \"123456OwW!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "john2@test.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "john2@test.com"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Properties [ADMIN]",
+			"item": [
+				{
+					"name": "Properties",
+					"item": [
+						{
+							"name": "Get all properties",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/properties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create property & get AVM",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"latitude\": 20,\n    \"longitude\": 20,\n    \"zipcode\": \"08002\",\n    \"city\": \"my city\",\n    \"address\": \"carrer madrid 24\",\n    \"yearOfConstruction\": 1900,\n    \"yearOfRenovation\": 2020,\n    \"hasElevator\": true,\n    \"totalArea\": 80\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/properties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Property",
+					"item": [
+						{
+							"name": "Get property",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/properties/:propertyId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties",
+										":propertyId"
+									],
+									"variable": [
+										{
+											"key": "propertyId",
+											"value": "940eadc0-8ebd-4f74-89a1-20b4007121bc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch property",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"latitude\": 20,\n    \"longitude\": 20,\n    \"zipcode\": \"08000\",\n    \"city\": \"my city\",\n    \"totalArea\": 80,\n    \"yearOfConstruction\": 1999\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/properties/:propertyId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties",
+										":propertyId"
+									],
+									"variable": [
+										{
+											"key": "propertyId",
+											"value": "be8e1a90-6a6f-464e-861d-66bf49260877"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete property",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/properties/:propertyId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties",
+										":propertyId"
+									],
+									"variable": [
+										{
+											"key": "propertyId",
+											"value": "940eadc0-8ebd-4f74-89a1-20b4007121bc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Data [ADMIN]",
+			"item": [
+				{
+					"name": "get data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/data?city=paris&zipcode=08006&latitude=20&longitude=20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"data"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "paris",
+									"description": "optional - STRING - name of a city"
+								},
+								{
+									"key": "zipcode",
+									"value": "08006",
+									"description": "optional - STRING - should be a valid Spanish zipcode"
+								},
+								{
+									"key": "latitude",
+									"value": "20",
+									"description": "optional - NUMBER - between -90 and +90"
+								},
+								{
+									"key": "longitude",
+									"value": "20",
+									"description": "optional - NUMBER - between -180 and +180"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Healthcheck",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"john@test.com\",\n    \"firstName\": \"john\",\n    \"lastName\": \"wayne\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8080"
+		}
+	]
+}
